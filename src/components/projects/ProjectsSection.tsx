@@ -36,6 +36,7 @@ export async function ProjectsSection() {
     group: p.group,
     icon: p.icon,
     image: images[i],
+    frame: p.frame,
     title: p.title,
     context: pick(p.context, locale),
     summary: pick(p.summary, locale),

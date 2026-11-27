@@ -83,10 +83,64 @@ export function ProjectExplorer({ cards }: { cards: ProjectCardData[] }) {
 }
 
 /**
- * Capa desenhada para projetos sem imagem. Usa os mesmos elementos do site:
- * linhas horizontais finas (como o fundo), cantos de mira (como a foto do hero),
- * rótulo em mono e título em Space Grotesk. Tamanhos por container query,
- * porque o card muda de largura entre uma e duas colunas.
+ * Fundo das imagens dos cards: linhas horizontais finas (como o fundo do site)
+ * e cantos de mira (como a foto do hero). Também é um container de tamanho,
+ * para os filhos se ajustarem por container query (cqw/cqh e @sm/@md).
+ */
+function Backdrop({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      {...props}
+      className={cn("relative size-full overflow-hidden", className)}
+      style={{
+        containerType: "size",
+        backgroundImage: "repeating-linear-gradient(to bottom, transparent 0 27px, var(--line) 27px 28px)",
+      }}
+    >
+      <span aria-hidden className="absolute top-2.5 left-2.5 size-3 border-t border-l border-cyan" />
+      <span aria-hidden className="absolute top-2.5 right-2.5 size-3 border-t border-r border-cyan" />
+      <span aria-hidden className="absolute bottom-2.5 left-2.5 size-3 border-b border-l border-cyan" />
+      <span aria-hidden className="absolute right-2.5 bottom-2.5 size-3 border-r border-b border-cyan" />
+      {children}
+    </div>
+  );
+}
+
+/**
+ * Imagem do projeto emoldurada: uma janela 16:9 no centro do fundo de linhas.
+ * Com `url`, ganha uma barra de navegador (para sites no ar).
+ * O tamanho usa cqw/cqh, então a janela cabe inteira em qualquer formato de card,
+ * inclusive no destaque, que é mais alto que 16:9.
+ */
+function ProjectFrame({ src, alt, url }: { src: string; alt: string; url?: string }) {
+  return (
+    <Backdrop className="flex items-center justify-center">
+      <div
+        className="flex flex-col overflow-hidden rounded-md border border-line bg-surface shadow-[0_14px_30px_-14px_rgb(15_23_42/0.45)]"
+        style={{ width: "min(84cqw, calc(76cqh * 16 / 9))", aspectRatio: "16 / 9" }}
+      >
+        {url ? (
+          <div className="flex h-[9%] shrink-0 items-center gap-[0.6cqw] border-b border-line bg-bg px-[1.5cqw]">
+            {[0, 1, 2].map((i) => (
+              <span key={i} aria-hidden className="size-[1.1cqw] min-h-1 min-w-1 rounded-full bg-line-strong" />
+            ))}
+            <span className="mx-auto truncate rounded-full bg-surface-2 px-[2cqw] font-mono text-[max(0.5rem,1.6cqw)] leading-relaxed text-fg-muted">
+              {url}
+            </span>
+          </div>
+        ) : null}
+        <div className="relative flex-1">
+          {/* unoptimized: a URL tem ?v=<hash>, e o Next 16 só otimiza query string fixa (localPatterns.search) */}
+          <Image src={src} alt={alt} fill unoptimized className="object-cover object-top" />
+        </div>
+      </div>
+    </Backdrop>
+  );
+}
+
+/**
+ * Capa desenhada para projetos sem imagem: rótulo em mono, frase e título em
+ * Space Grotesk e o fluxo do projeto, sobre o mesmo fundo das imagens.
  */
 function ProjectCover({
   title,
@@ -98,20 +152,11 @@ function ProjectCover({
   Icon: typeof Globe;
 }) {
   return (
-    <div
+    <Backdrop
       role="img"
       aria-label={`${cover.kicker}: ${cover.headline}: ${title}`}
-      className="@container relative flex size-full flex-col justify-between overflow-hidden p-6 @md:p-8"
-      style={{
-        backgroundImage: "repeating-linear-gradient(to bottom, transparent 0 27px, var(--line) 27px 28px)",
-      }}
+      className="flex flex-col justify-between p-6 @md:p-8"
     >
-      {/* Cantos de mira */}
-      <span aria-hidden className="absolute top-2.5 left-2.5 size-3 border-t border-l border-cyan" />
-      <span aria-hidden className="absolute top-2.5 right-2.5 size-3 border-t border-r border-cyan" />
-      <span aria-hidden className="absolute bottom-2.5 left-2.5 size-3 border-b border-l border-cyan" />
-      <span aria-hidden className="absolute right-2.5 bottom-2.5 size-3 border-r border-b border-cyan" />
-
       <Icon
         aria-hidden
         strokeWidth={1}
@@ -144,7 +189,7 @@ function ProjectCover({
       ) : (
         <span />
       )}
-    </div>
+    </Backdrop>
   );
 }
 
@@ -161,7 +206,9 @@ function ProjectCard({ card: c, featured = false }: { card: ProjectCardData; fea
           featured && "md:aspect-auto md:w-[58%] md:shrink-0 md:border-r md:border-b-0",
         )}
       >
-        {c.image ? (
+        {c.image && c.frame ? (
+          <ProjectFrame src={c.image} alt={c.title} url={c.frame.url} />
+        ) : c.image ? (
           // unoptimized: a URL tem ?v=<hash>, e o Next 16 só otimiza query string fixa (localPatterns.search)
           <Image src={c.image} alt={c.title} fill unoptimized className="object-cover" />
         ) : c.cover ? (

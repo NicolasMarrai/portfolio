@@ -28,7 +28,7 @@ npm run typecheck
 - Campos vazios em `site.ts` não aparecem no site.
 - **Imagens dos projetos:** coloque em `public/projects/<id>.png` (ou .jpg/.webp), por exemplo `public/projects/cognull.png`. O site detecta no build, sem precisar editar código. Sem imagem, aparece um placeholder com o ícone e o nome.
 - Foto e PDF do currículo: coloque em `public/` e informe o caminho em `src/data/site.ts`.
-- **Capa desenhada** (ex.: Baja, HealthMed, Bomba-Lógica): sem imagem em `public/projects/`, preencha o campo opcional `cover` do projeto (rótulo, frase e fluxo `A → B → C`).
+- **Moldura e capa:** com imagem, o campo `frame` mostra a imagem numa janela sobre o fundo de linhas (`frame.url` adiciona a barra de navegador). Sem imagem, o campo `cover` desenha uma capa (rótulo, frase e fluxo `A → B → C`), como no Bomba-Lógica.
 - **SEO:** `site.url` define o canonical, o Open Graph, o `sitemap.xml` e o `robots.txt`. Vazio, usa o domínio de produção da Vercel. A imagem de prévia é gerada em `src/app/[locale]/opengraph-image.tsx`.
 
 ## Estrutura

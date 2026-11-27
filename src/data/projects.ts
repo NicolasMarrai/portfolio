@@ -6,9 +6,8 @@ export type ProjectIcon = "globe" | "graduation" | "qr" | "gauge";
 
 /**
  * Imagens: coloque o arquivo em public/projects/<id>.png (ou .jpg / .webp).
- * O site detecta sozinho; sem arquivo, mostra um placeholder com o ícone e o nome.
- * O card em destaque mostra a imagem num quadro mais alto que 16:9: se o projeto
- * puder ficar em destaque, prefira uma imagem 4:3 com o conteúdo no centro.
+ * O site detecta sozinho; sem arquivo, usa a capa desenhada (cover) ou um placeholder.
+ * Use imagens 16:9 (ou um pouco mais largas, alinhadas pelo topo).
  */
 export type Project = {
   id: string;
@@ -22,6 +21,11 @@ export type Project = {
   group: "software" | "hardware";
   /** Ícone do placeholder (enquanto não houver imagem em public/projects/<id>.png). */
   icon: ProjectIcon;
+  /**
+   * Mostra a imagem como uma janela sobre o fundo de linhas, com os cantos de mira.
+   * Com `url`, a janela ganha uma barra de navegador com esse endereço (para sites no ar).
+   */
+  frame?: { url?: string };
   /**
    * Capa desenhada no lugar do placeholder, para projetos sem imagem (opcional).
    * Uma imagem em public/projects/<id>.png continua tendo prioridade.
@@ -54,21 +58,7 @@ export const projects: Project[] = [
     status: "in-progress",
     group: "hardware",
     icon: "gauge",
-    cover: {
-      kicker: { pt: "Engrenados Baja SAE · Uniube", en: "Engrenados Baja SAE · Uniube" },
-      headline: {
-        pt: "Sistema de telemetria para um veículo off-road de competição",
-        en: "Telemetry system for an off-road competition vehicle",
-      },
-      flow: [
-        { pt: "Sensores", en: "Sensors" },
-        { pt: "RS-485", en: "RS-485" },
-        { pt: "ECU STM32", en: "STM32 ECU" },
-        { pt: "Gateway ESP32", en: "ESP32 gateway" },
-        { pt: "LoRa · 4G", en: "LoRa · 4G" },
-        { pt: "Grafana no box", en: "Grafana in the pit" },
-      ],
-    },
+    frame: {},
     tags: ["STM32", "ESP32", "RS-485", "LoRa", "Grafana"],
     links: {},
     details: {
@@ -100,6 +90,7 @@ export const projects: Project[] = [
     status: "online",
     group: "software",
     icon: "globe",
+    frame: { url: "cognull.com.br" },
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "shadcn/ui", "EmailJS"],
     links: { demo: "https://www.cognull.com.br/" },
     details: {
@@ -126,6 +117,7 @@ export const projects: Project[] = [
     status: "online",
     group: "software",
     icon: "globe",
+    frame: { url: "nathaliaestetica.vercel.app" },
     tags: ["HTML", "CSS", "JavaScript", "SEO"],
     links: { demo: "https://nathaliaestetica.vercel.app/" },
     details: {
@@ -165,19 +157,7 @@ export const projects: Project[] = [
     status: "ended",
     group: "software",
     icon: "graduation",
-    cover: {
-      kicker: { pt: "Plataforma web · React + Supabase", en: "Web platform · React + Supabase" },
-      headline: {
-        pt: "Uma plataforma de ensino para estudantes de medicina",
-        en: "A learning platform for medical students",
-      },
-      flow: [
-        { pt: "Cursos", en: "Courses" },
-        { pt: "Videoaulas", en: "Video lessons" },
-        { pt: "Carrinho · cupons", en: "Cart · coupons" },
-        { pt: "Painel admin", en: "Admin panel" },
-      ],
-    },
+    frame: {},
     tags: ["React", "TypeScript", "Supabase", "PostgreSQL", "Mux"],
     links: {},
     details: {

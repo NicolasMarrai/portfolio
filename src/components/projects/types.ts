@@ -6,6 +6,7 @@ export type ProjectCardData = {
   group: Project["group"];
   icon: ProjectIcon;
   image?: string;
+  frame?: { url?: string };
   title: string;
   context: string;
   summary: string;
