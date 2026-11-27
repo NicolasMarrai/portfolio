@@ -200,19 +200,7 @@ export const projects: Project[] = [
     status: "event",
     group: "hardware",
     icon: "qr",
-    cover: {
-      kicker: { pt: "XVIII ENTEC · 2025", en: "XVIII ENTEC · 2025" },
-      headline: {
-        pt: "Uma simulação educativa de engenharia social",
-        en: "An educational social-engineering simulation",
-      },
-      flow: [
-        { pt: "QR Code", en: "QR code" },
-        { pt: "Formulário", en: "Form" },
-        { pt: "ESP32", en: "ESP32" },
-        { pt: "LED · buzzer", en: "LED · buzzer" },
-      ],
-    },
+    frame: { url: "bomba-logica-next.vercel.app" },
     tags: ["Next.js", "TypeScript", "Firebase", "ESP32", "Arduino IDE"],
     links: {
       demo: "https://bomba-logica-next.vercel.app/",
