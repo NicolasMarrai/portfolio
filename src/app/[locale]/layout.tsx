@@ -33,6 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL(getSiteUrl()),
+    // Google Search Console (conta nicolasmarrai.dev). Não remover, senão a verificação cai.
+    verification: { google: "RcHbSlxlHDjO8pdjOitwY_-rihKVRdbvR63O40bcg10" },
     title: t("title"),
     description: t("description"),
     alternates: {
