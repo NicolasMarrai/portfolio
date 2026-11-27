@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Fontes de classes do Tailwind: todo o src (garante que componentes novos sejam lidos). */
+@source "../";
+
+/* ------------------------------------------------------------------
+   Identidade: engenharia de hardware + software, tema claro e limpo.
+   Acentos escurecidos para contraste AA sobre fundo claro:
+   fg #0F172A (16:1), muted #475569 (7:1), ciano #0E7490 (5,4:1),
+   verde #4D7C0F (5,3:1) e laranja #C2410C (5,2:1) sobre #FFFFFF/#F6F7F9.
+------------------------------------------------------------------- */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef1f5;
+  --line: rgb(15 23 42 / 0.1);
+  --line-strong: rgb(15 23 42 / 0.2);
+  --cyan: #0e7490;
+  --cyan-dim: #155e75;
+  --lime: #4d7c0f;
+  --orange: #c2410c;
+  --fg: #0f172a;
+  --fg-muted: #475569;
+
+  /* tokens do shadcn/ui (Dialog e Button) */
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card: var(--surface);
+  --card-foreground: var(--fg);
+  --popover: var(--surface);
+  --popover-foreground: var(--fg);
+  --primary: var(--cyan);
+  --primary-foreground: var(--bg);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--fg);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--fg-muted);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--fg);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--cyan);
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-cyan: var(--cyan);
+  --color-cyan-dim: var(--cyan-dim);
+  --color-lime: var(--lime);
+  --color-orange: var(--orange);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-code);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-bg text-fg;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+  ::selection {
+    background: var(--cyan);
+    color: var(--bg);
+  }
+}
+
+@layer components {
+  /*
+   * Terminal do hero: continua escuro na página clara. Redefine as variáveis
+   * só dentro dele, então as classes text-cyan, text-fg etc. usam os tons claros.
+   */
+  .terminal-dark {
+    --surface: #0f172a;
+    --line: rgb(148 163 184 / 0.22);
+    --cyan: #22d3ee;
+    --lime: #a3e635;
+    --fg: #e6edf3;
+    --fg-muted: #94a3b8;
+    color: var(--fg);
+  }
+
+  /* Card: borda fina, fundo opaco e brilho ciano apenas no hover */
+  .panel {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: var(--radius);
+    transition:
+      border-color 200ms ease,
+      box-shadow 200ms ease;
+  }
+  .panel-hover:hover,
+  .panel-hover:focus-within {
+    border-color: rgb(14 116 144 / 0.45);
+    box-shadow:
+      0 0 0 1px rgb(14 116 144 / 0.12),
+      0 8px 28px -10px rgb(14 116 144 / 0.35);
+  }
+
+  /* Cursor piscando da linha que digita sozinha */
+  .caret {
+    display: inline-block;
+    width: 0.55ch;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    background: var(--cyan);
+    animation: caret-blink 1s steps(1) infinite;
+  }
+}
+
+/*
+ * Carrossel de skills: a trilha tem a lista duas vezes. Ela anda -50%
+ * (exatamente uma cópia) e recomeça, então o loop não "pula".
+ */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee-track[data-direction="right"] {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .caret,
+  .marquee-track {
+    animation: none;
+  }
+}

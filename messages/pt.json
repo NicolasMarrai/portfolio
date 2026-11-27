@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "title": "Nicolas Marrai · Engenharia da Computação",
+    "description": "Portfólio de Nicolas Marrai, estudante de Engenharia da Computação na Uniube. Desenvolvimento web, infraestrutura de TI e sistemas embarcados."
+  },
+  "nav": {
+    "about": "Sobre",
+    "skills": "Skills",
+    "projects": "Projetos",
+    "hardware": "Hardware",
+    "experience": "Experiência",
+    "education": "Formação",
+    "contact": "Contato",
+    "menu": "Abrir menu",
+    "close": "Fechar menu",
+    "language": "Idioma",
+    "skip": "Pular para o conteúdo"
+  },
+  "hero": {
+    "available": "Disponível para estágio e vagas júnior",
+    "eyebrow": "Engenharia da Computação · Uniube",
+    "role": "Software, infra e hardware",
+    "subtitle": "Estudante de Engenharia da Computação, construindo meu caminho para me tornar um grande desenvolvedor. O que me move é aprender: cada tecnologia nova que descubro me dá vontade de ir mais fundo.",
+    "highlights": {
+      "h1": {
+        "title": "Software",
+        "text": "React, Next.js e TypeScript em projetos reais"
+      },
+      "h2": {
+        "title": "Infraestrutura",
+        "text": "Field engineer em datacenter e estágio em NOC"
+      },
+      "h3": {
+        "title": "Embarcados",
+        "text": "ESP32, sensores e telemetria"
+      }
+    },
+    "ctaProjects": "Ver projetos",
+    "ctaContact": "Vamos conversar",
+    "cv": "Baixar currículo PDF",
+    "photoAlt": "Foto de Nicolas Marrai",
+    "terminal": [
+      {
+        "cmd": "whoami",
+        "out": "desenvolvedor em formação"
+      },
+      {
+        "cmd": "nicolas --status",
+        "out": "resolutivo ✓"
+      },
+      {
+        "cmd": "curiosidade --nivel",
+        "out": "∞"
+      },
+      {
+        "cmd": "git log --oneline | wc -l",
+        "out": "sempre aumentando..."
+      }
+    ]
+  },
+  "about": {
+    "label": "Quem sou",
+    "title": "Sobre & trajetória",
+    "intro": "Meu caminho até aqui não foi em linha reta: passei por três cidades e dois cursinhos antes de chegar à Engenharia da Computação. Hoje divido meu tempo entre a faculdade e os estudos de programação, sempre buscando aprender algo novo.",
+    "languages": "PT nativo · EN intermediário",
+    "timeline": {
+      "t1": {
+        "year": "2019",
+        "title": "PUC Goiás",
+        "detail": "Aprovado em Eng. Mecatrônica"
+      },
+      "t2": {
+        "year": "2022",
+        "title": "São José dos Campos",
+        "detail": "Cursinho para o ITA"
+      },
+      "t3": {
+        "year": "2024",
+        "title": "Fortaleza",
+        "detail": "Cursinho para o ITA"
+      },
+      "t4": {
+        "year": "2025",
+        "title": "Uberaba",
+        "detail": "Início da graduação na UNIUBE · Estágio na TMK NET"
+      },
+      "t5": {
+        "year": "2026",
+        "title": "CED Global",
+        "detail": "Field Engineer freelancer · Desenvolvedor em formação"
+      }
+    }
+  },
+  "skills": {
+    "label": "Ferramentas",
+    "title": "Skills",
+    "intro": "Separadas pelo jeito que aprendi cada uma: em ambiente profissional, projetos ou em estudos.",
+    "origin": {
+      "professional": "profissional",
+      "project": "projeto",
+      "study": "estudo"
+    }
+  },
+  "projects": {
+    "label": "Software",
+    "title": "Projetos",
+    "intro": "Projetos web, com a minha parte em cada um descrita nos detalhes técnicos.",
+    "details": "Ver detalhes técnicos",
+    "demo": "Ver site",
+    "github": "GitHub",
+    "status": {
+      "online": "No ar",
+      "ended": "Projeto encerrado",
+      "in-progress": "Em desenvolvimento",
+      "event": "Apresentado em evento"
+    },
+    "modal": {
+      "context": "Contexto",
+      "myPart": "Minha parte",
+      "stack": "Ferramentas",
+      "results": "Resultados e status",
+      "close": "Fechar"
+    },
+    "filter": {
+      "label": "Filtrar projetos",
+      "all": "Todos",
+      "software": "Software",
+      "hardware": "Hardware & embarcados"
+    },
+    "article": "Ver notícia"
+  },
+  "hardware": {
+    "label": "Software + hardware",
+    "title": "Hardware & embarcados",
+    "intro": "O meu diferencial: projetos que juntam código, eletrônica e o mundo físico.",
+    "pipeline": "Arquitetura planejada"
+  },
+  "experience": {
+    "label": "Trajetória profissional",
+    "title": "Experiência",
+    "extra": "Extracurricular"
+  },
+  "education": {
+    "label": "Formação & cursos",
+    "title": "Formação",
+    "degrees": "Graduação",
+    "certifications": {
+      "title": "Certificações",
+      "hint": "Clique para ver os certificados ({count})",
+      "download": "Baixar certificado PDF",
+      "preview": "Miniatura do certificado"
+    }
+  },
+  "contact": {
+    "pending": "Links de contato em breve.",
+    "email": "E-mail"
+  },
+  "footer": {
+    "top": "Voltar ao topo",
+    "navigation": "Navegação",
+    "rights": "Todos os direitos reservados."
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "title": "Nicolas Marrai · Computer Engineering",
+    "description": "Portfolio of Nicolas Marrai, Computer Engineering student at Uniube (Brazil). Web development, IT infrastructure and embedded systems."
+  },
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "hardware": "Hardware",
+    "experience": "Experience",
+    "education": "Education",
+    "contact": "Contact",
+    "menu": "Open menu",
+    "close": "Close menu",
+    "language": "Language",
+    "skip": "Skip to content"
+  },
+  "hero": {
+    "available": "Open to internships and junior roles",
+    "eyebrow": "Computer Engineering · Uniube",
+    "role": "Software, infra and hardware",
+    "subtitle": "Computer Engineering student, building my path to becoming a great developer. What drives me is learning: every new technology I discover makes me want to dig deeper.",
+    "highlights": {
+      "h1": {
+        "title": "Software",
+        "text": "React, Next.js and TypeScript in real projects"
+      },
+      "h2": {
+        "title": "Infrastructure",
+        "text": "Datacenter field engineer and NOC internship"
+      },
+      "h3": {
+        "title": "Embedded",
+        "text": "ESP32, sensors and telemetry"
+      }
+    },
+    "ctaProjects": "See projects",
+    "ctaContact": "Let's talk",
+    "cv": "Download CV (PDF)",
+    "photoAlt": "Photo of Nicolas Marrai",
+    "terminal": [
+      {
+        "cmd": "whoami",
+        "out": "developer in training"
+      },
+      {
+        "cmd": "nicolas --status",
+        "out": "problem solver ✓"
+      },
+      {
+        "cmd": "curiosity --level",
+        "out": "∞"
+      },
+      {
+        "cmd": "git log --oneline | wc -l",
+        "out": "always growing..."
+      }
+    ]
+  },
+  "about": {
+    "label": "Who I am",
+    "title": "About & journey",
+    "intro": "My path here wasn't a straight line: I went through three cities and two prep courses before getting into Computer Engineering. Today I split my time between university and studying programming, always looking to learn something new.",
+    "languages": "PT native · EN intermediate",
+    "timeline": {
+      "t1": {
+        "year": "2019",
+        "title": "PUC Goiás",
+        "detail": "Admitted to Mechatronics Engineering"
+      },
+      "t2": {
+        "year": "2022",
+        "title": "São José dos Campos",
+        "detail": "Prep course for ITA"
+      },
+      "t3": {
+        "year": "2024",
+        "title": "Fortaleza",
+        "detail": "Prep course for ITA"
+      },
+      "t4": {
+        "year": "2025",
+        "title": "Uberaba",
+        "detail": "Started my degree at UNIUBE · internship at TMK NET"
+      },
+      "t5": {
+        "year": "2026",
+        "title": "CED Global",
+        "detail": "Freelance Field Engineer · developer in training"
+      }
+    }
+  },
+  "skills": {
+    "label": "Toolbox",
+    "title": "Skills",
+    "intro": "Grouped by how I learned each one: in a professional setting, in projects or through study.",
+    "origin": {
+      "professional": "professional",
+      "project": "project",
+      "study": "study"
+    }
+  },
+  "projects": {
+    "label": "Software",
+    "title": "Projects",
+    "intro": "Web projects, with my part in each one described in the technical details.",
+    "details": "See technical details",
+    "demo": "Visit site",
+    "github": "GitHub",
+    "status": {
+      "online": "Live",
+      "ended": "Project ended",
+      "in-progress": "In development",
+      "event": "Shown at an event"
+    },
+    "modal": {
+      "context": "Context",
+      "myPart": "My part",
+      "stack": "Tools",
+      "results": "Results & status",
+      "close": "Close"
+    },
+    "filter": {
+      "label": "Filter projects",
+      "all": "All",
+      "software": "Software",
+      "hardware": "Hardware & embedded"
+    },
+    "article": "Read the article"
+  },
+  "hardware": {
+    "label": "Software + hardware",
+    "title": "Hardware & embedded",
+    "intro": "What sets me apart: projects that combine code, electronics and the physical world.",
+    "pipeline": "Planned architecture"
+  },
+  "experience": {
+    "label": "Professional journey",
+    "title": "Experience",
+    "extra": "Extracurricular"
+  },
+  "education": {
+    "label": "Education & courses",
+    "title": "Education",
+    "degrees": "Degrees",
+    "certifications": {
+      "title": "Certifications",
+      "hint": "Click to see the certificates ({count})",
+      "download": "Download certificate PDF",
+      "preview": "Certificate preview"
+    }
+  },
+  "contact": {
+    "pending": "Contact links coming soon.",
+    "email": "Email"
+  },
+  "footer": {
+    "top": "Back to top",
+    "navigation": "Navigation",
+    "rights": "All rights reserved."
+  }
+}
