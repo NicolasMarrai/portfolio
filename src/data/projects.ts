@@ -22,8 +22,6 @@ export type Project = {
   group: "software" | "hardware";
   /** Ícone do placeholder (enquanto não houver imagem em public/projects/<id>.png). */
   icon: ProjectIcon;
-  /** Fluxo da arquitetura, desenhado no card como "A → B → C" (opcional). */
-  pipeline?: Localized[];
   /**
    * Capa desenhada no lugar do placeholder, para projetos sem imagem (opcional).
    * Uma imagem em public/projects/<id>.png continua tendo prioridade.
@@ -56,15 +54,22 @@ export const projects: Project[] = [
     status: "in-progress",
     group: "hardware",
     icon: "gauge",
+    cover: {
+      kicker: { pt: "Engrenados Baja SAE · Uniube", en: "Engrenados Baja SAE · Uniube" },
+      headline: {
+        pt: "Sistema de telemetria para um veículo off-road de competição",
+        en: "Telemetry system for an off-road competition vehicle",
+      },
+      flow: [
+        { pt: "Sensores", en: "Sensors" },
+        { pt: "RS-485", en: "RS-485" },
+        { pt: "ECU STM32", en: "STM32 ECU" },
+        { pt: "Gateway ESP32", en: "ESP32 gateway" },
+        { pt: "LoRa · 4G", en: "LoRa · 4G" },
+        { pt: "Grafana no box", en: "Grafana in the pit" },
+      ],
+    },
     tags: ["STM32", "ESP32", "RS-485", "LoRa", "Grafana"],
-    pipeline: [
-      { pt: "Sensores", en: "Sensors" },
-      { pt: "RS-485", en: "RS-485" },
-      { pt: "ECU STM32", en: "STM32 ECU" },
-      { pt: "Gateway ESP32", en: "ESP32 gateway" },
-      { pt: "LoRa · 4G", en: "LoRa · 4G" },
-      { pt: "Grafana no box", en: "Grafana in the pit" },
-    ],
     links: {},
     details: {
       context: {
@@ -160,6 +165,19 @@ export const projects: Project[] = [
     status: "ended",
     group: "software",
     icon: "graduation",
+    cover: {
+      kicker: { pt: "Plataforma web · React + Supabase", en: "Web platform · React + Supabase" },
+      headline: {
+        pt: "Uma plataforma de ensino para estudantes de medicina",
+        en: "A learning platform for medical students",
+      },
+      flow: [
+        { pt: "Cursos", en: "Courses" },
+        { pt: "Videoaulas", en: "Video lessons" },
+        { pt: "Carrinho · cupons", en: "Cart · coupons" },
+        { pt: "Painel admin", en: "Admin panel" },
+      ],
+    },
     tags: ["React", "TypeScript", "Supabase", "PostgreSQL", "Mux"],
     links: {},
     details: {

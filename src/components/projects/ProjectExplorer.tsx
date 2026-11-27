@@ -120,7 +120,7 @@ function ProjectCover({
 
       <p className="relative font-mono text-[0.7rem] tracking-wide text-cyan @md:text-xs">{cover.kicker}</p>
 
-      <div className="relative max-w-[78%]">
+      <div className="relative max-w-[78%] @md:max-w-[68%]">
         <p className="font-heading text-base leading-snug font-medium text-fg @sm:text-lg @md:text-2xl">
           {cover.headline}
         </p>
@@ -129,14 +129,15 @@ function ProjectCover({
 
       {cover.flow?.length ? (
         <ol className="relative hidden flex-wrap items-center gap-1.5 font-mono text-[0.68rem] text-fg-muted @sm:flex">
-          {cover.flow.map((step, i) => (
+          {cover.flow.map((step, i, all) => (
+            // A seta vem depois do passo: se o fluxo quebrar de linha, ela não fica sozinha no início
             <li key={step} className="flex items-center gap-1.5">
-              {i > 0 ? (
+              <span className="rounded border border-line bg-surface px-1.5 py-0.5">{step}</span>
+              {i < all.length - 1 ? (
                 <span aria-hidden className="text-cyan">
                   →
                 </span>
               ) : null}
-              <span className="rounded border border-line bg-surface px-1.5 py-0.5">{step}</span>
             </li>
           ))}
         </ol>
@@ -149,7 +150,6 @@ function ProjectCover({
 
 function ProjectCard({ card: c, featured = false }: { card: ProjectCardData; featured?: boolean }) {
   const t = useTranslations("projects");
-  const h = useTranslations("hardware");
   const Icon = icons[c.icon];
 
   return (
@@ -183,11 +183,6 @@ function ProjectCard({ card: c, featured = false }: { card: ProjectCardData; fea
         <h3 className="mt-3 text-xl font-semibold">{c.title}</h3>
         <p className="mt-1 text-sm text-cyan">{c.context}</p>
         <p className="mt-3 leading-relaxed text-fg-muted">{c.summary}</p>
-        {c.pipeline?.length ? (
-          <p className="mt-3 text-sm leading-relaxed text-fg-muted">
-            {h("pipeline")}: {c.pipeline.join(" → ")}
-          </p>
-        ) : null}
 
         <ul className="mt-4 flex flex-wrap gap-1.5">
           {c.tags.map((tag) => (
