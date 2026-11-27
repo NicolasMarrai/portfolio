@@ -59,18 +59,23 @@ export function ProjectExplorer({ cards }: { cards: ProjectCardData[] }) {
 
       <motion.ul layout={!reduce} className="grid gap-5 md:grid-cols-2">
         <AnimatePresence mode="popLayout" initial={false}>
-          {visible.map((c) => (
-            <motion.li
-              key={c.id}
-              layout={!reduce}
-              initial={reduce ? false : { opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <ProjectCard card={c} />
-            </motion.li>
-          ))}
+          {visible.map((c, i) => {
+            // Com quantidade ímpar, o primeiro card ocupa a linha inteira e os outros ficam em pares.
+            const featured = i === 0 && visible.length % 2 === 1;
+            return (
+              <motion.li
+                key={c.id}
+                layout={!reduce}
+                initial={reduce ? false : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className={cn(featured && "md:col-span-2")}
+              >
+                <ProjectCard card={c} featured={featured} />
+              </motion.li>
+            );
+          })}
         </AnimatePresence>
       </motion.ul>
     </div>
@@ -142,14 +147,20 @@ function ProjectCover({
   );
 }
 
-function ProjectCard({ card: c }: { card: ProjectCardData }) {
+function ProjectCard({ card: c, featured = false }: { card: ProjectCardData; featured?: boolean }) {
   const t = useTranslations("projects");
   const h = useTranslations("hardware");
   const Icon = icons[c.icon];
 
   return (
-    <article className="panel panel-hover flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[16/9] border-b border-line bg-surface-2">
+    <article className={cn("panel panel-hover flex h-full flex-col overflow-hidden", featured && "md:flex-row")}>
+      <div
+        className={cn(
+          "relative aspect-[16/9] border-b border-line bg-surface-2",
+          // Destaque: imagem à esquerda, texto à direita
+          featured && "md:aspect-auto md:w-[58%] md:shrink-0 md:border-r md:border-b-0",
+        )}
+      >
         {c.image ? (
           // unoptimized: a URL tem ?v=<hash>, e o Next 16 só otimiza query string fixa (localPatterns.search)
           <Image src={c.image} alt={c.title} fill unoptimized className="object-cover" />
@@ -164,7 +175,7 @@ function ProjectCard({ card: c }: { card: ProjectCardData }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className={cn("flex flex-1 flex-col p-5", featured && "md:p-7")}>
         <p className="flex items-center gap-2 font-mono text-xs text-fg-muted">
           <span aria-hidden className={cn("size-1.5 rounded-full", statusColor[c.status])} />
           {t(`status.${c.status}`)}

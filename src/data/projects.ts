@@ -7,6 +7,8 @@ export type ProjectIcon = "globe" | "graduation" | "qr" | "gauge";
 /**
  * Imagens: coloque o arquivo em public/projects/<id>.png (ou .jpg / .webp).
  * O site detecta sozinho; sem arquivo, mostra um placeholder com o ícone e o nome.
+ * O card em destaque mostra a imagem num quadro mais alto que 16:9: se o projeto
+ * puder ficar em destaque, prefira uma imagem 4:3 com o conteúdo no centro.
  */
 export type Project = {
   id: string;
@@ -41,6 +43,48 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "baja",
+    title: "Telemetria Baja SAE",
+    context: {
+      pt: "Engrenados Baja SAE · desde ago/2025",
+      en: "Engrenados Baja SAE · since Aug 2025",
+    },
+    summary: {
+      pt: "Arquitetura de telemetria do carro: sensores em RS-485, ECU STM32, gateway ESP32 com LoRa e 4G, e Grafana no box.",
+      en: "Telemetry architecture for the car: RS-485 sensors, an STM32 ECU, an ESP32 gateway with LoRa and 4G, and Grafana in the pit.",
+    },
+    status: "in-progress",
+    group: "hardware",
+    icon: "gauge",
+    tags: ["STM32", "ESP32", "RS-485", "LoRa", "Grafana"],
+    pipeline: [
+      { pt: "Sensores", en: "Sensors" },
+      { pt: "RS-485", en: "RS-485" },
+      { pt: "ECU STM32", en: "STM32 ECU" },
+      { pt: "Gateway ESP32", en: "ESP32 gateway" },
+      { pt: "LoRa · 4G", en: "LoRa · 4G" },
+      { pt: "Grafana no box", en: "Grafana in the pit" },
+    ],
+    links: {},
+    details: {
+      context: {
+        pt: "Faço parte da equipe Engrenados Baja SAE, que constrói um veículo off-road para competições. Como Sub-Supervisor de TI, sou responsável, junto com a equipe de TI, pelo desenvolvimento da telemetria: um sistema para acompanhar os dados do carro em tempo real, direto do box.",
+        en: "I'm part of the Engrenados Baja SAE team, which builds an off-road vehicle for competitions. As IT Deputy Supervisor, I'm responsible, together with the IT team, for developing the telemetry: a system to follow the car's data in real time, right from the pit.",
+      },
+      myPart: {
+        pt: "Desenvolvimento do sistema de telemetria em conjunto com a equipe de TI: planejamento da arquitetura, pesquisa de componentes e documentação técnica.",
+        en: "Developing the telemetry system together with the IT team: architecture planning, component research and technical documentation.",
+      },
+      stack: ["STM32 Black Pill", "ESP32", "RS-485", "LoRa 915 MHz", "4G LTE", "Grafana", "SD card"],
+      results: [
+        {
+          pt: "Sensores: pressão do freio, RPM, temperatura do cabeçote e da correia CVT, posição do acelerador e GPS.",
+          en: "Sensors: brake pressure, RPM, cylinder head and CVT belt temperature, throttle position and GPS.",
+        },
+      ],
+    },
+  },
+  {
     id: "cognull",
     title: "Cognull",
     context: { pt: "Site institucional", en: "Company website" },
@@ -64,6 +108,42 @@ export const projects: Project[] = [
       },
       stack: ["React", "TypeScript", "Tailwind CSS", "Vite", "shadcn/ui", "EmailJS"],
       results: [{ pt: "Site no ar em cognull.com.br.", en: "Live at cognull.com.br." }],
+    },
+  },
+  {
+    id: "nathalia-estetica",
+    title: "Nathalia Moura Estética",
+    context: { pt: "Site para profissional de estética", en: "Website for a beauty professional" },
+    summary: {
+      pt: "Site de apresentação de uma profissional de estética e sobrancelhas, com serviços, depoimentos, SEO local e agendamento pelo WhatsApp.",
+      en: "Showcase website for a beauty and eyebrow professional, with services, testimonials, local SEO and booking via WhatsApp.",
+    },
+    status: "online",
+    group: "software",
+    icon: "globe",
+    tags: ["HTML", "CSS", "JavaScript", "SEO"],
+    links: { demo: "https://nathaliaestetica.vercel.app/" },
+    details: {
+      context: {
+        pt: "Site feito para uma profissional de estética e sobrancelhas de Arvorezinha/RS, para apresentar os serviços e levar clientes ao agendamento.",
+        en: "Website built for a beauty and eyebrow professional in Arvorezinha/RS, to present her services and lead clients to booking.",
+      },
+      myPart: {
+        pt: "Desenvolvimento do site: estrutura das seções, layout responsivo, SEO e a integração com o WhatsApp para agendamento.",
+        en: "Website development: section structure, responsive layout, SEO and WhatsApp integration for booking.",
+      },
+      stack: ["HTML", "CSS", "JavaScript", "Schema.org (JSON-LD)", "Vercel"],
+      results: [
+        { pt: "Site publicado e no ar.", en: "Website published and live." },
+        {
+          pt: "SEO local: título e descrição com a cidade e dados estruturados de salão de beleza para o Google.",
+          en: "Local SEO: title and description with the city, plus beauty-salon structured data for Google.",
+        },
+        {
+          pt: "Botão de agendamento e atalho flutuante para o WhatsApp.",
+          en: "Booking button and floating WhatsApp shortcut.",
+        },
+      ],
     },
   },
   {
@@ -163,48 +243,6 @@ export const projects: Project[] = [
         {
           pt: "Integração de ponta a ponta: QR Code → formulário web → Firebase → ESP32 com LED/buzzer.",
           en: "End-to-end integration: QR code → web form → Firebase → ESP32 with LED/buzzer.",
-        },
-      ],
-    },
-  },
-  {
-    id: "baja",
-    title: "Telemetria Baja SAE",
-    context: {
-      pt: "Engrenados Baja SAE · desde ago/2025",
-      en: "Engrenados Baja SAE · since Aug 2025",
-    },
-    summary: {
-      pt: "Arquitetura de telemetria do carro: sensores em RS-485, ECU STM32, gateway ESP32 com LoRa e 4G, e Grafana no box.",
-      en: "Telemetry architecture for the car: RS-485 sensors, an STM32 ECU, an ESP32 gateway with LoRa and 4G, and Grafana in the pit.",
-    },
-    status: "in-progress",
-    group: "hardware",
-    icon: "gauge",
-    tags: ["STM32", "ESP32", "RS-485", "LoRa", "Grafana"],
-    pipeline: [
-      { pt: "Sensores", en: "Sensors" },
-      { pt: "RS-485", en: "RS-485" },
-      { pt: "ECU STM32", en: "STM32 ECU" },
-      { pt: "Gateway ESP32", en: "ESP32 gateway" },
-      { pt: "LoRa · 4G", en: "LoRa · 4G" },
-      { pt: "Grafana no box", en: "Grafana in the pit" },
-    ],
-    links: {},
-    details: {
-      context: {
-        pt: "Faço parte da equipe Engrenados Baja SAE, que constrói um veículo off-road para competições. Como Sub-Supervisor de TI, sou responsável, junto com a equipe de TI, pelo desenvolvimento da telemetria: um sistema para acompanhar os dados do carro em tempo real, direto do box.",
-        en: "I'm part of the Engrenados Baja SAE team, which builds an off-road vehicle for competitions. As IT Deputy Supervisor, I'm responsible, together with the IT team, for developing the telemetry: a system to follow the car's data in real time, right from the pit.",
-      },
-      myPart: {
-        pt: "Desenvolvimento do sistema de telemetria em conjunto com a equipe de TI: planejamento da arquitetura, pesquisa de componentes e documentação técnica.",
-        en: "Developing the telemetry system together with the IT team: architecture planning, component research and technical documentation.",
-      },
-      stack: ["STM32 Black Pill", "ESP32", "RS-485", "LoRa 915 MHz", "4G LTE", "Grafana", "SD card"],
-      results: [
-        {
-          pt: "Sensores: pressão do freio, RPM, temperatura do cabeçote e da correia CVT, posição do acelerador e GPS.",
-          en: "Sensors: brake pressure, RPM, cylinder head and CVT belt temperature, throttle position and GPS.",
         },
       ],
     },
