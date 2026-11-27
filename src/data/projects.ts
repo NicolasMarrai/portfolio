@@ -22,6 +22,11 @@ export type Project = {
   icon: ProjectIcon;
   /** Fluxo da arquitetura, desenhado no card como "A → B → C" (opcional). */
   pipeline?: Localized[];
+  /**
+   * Capa desenhada no lugar do placeholder, para projetos sem imagem (opcional).
+   * Uma imagem em public/projects/<id>.png continua tendo prioridade.
+   */
+  cover?: { kicker: Localized; headline: Localized; flow?: Localized[] };
   tags: string[];
   /** demo = site no ar; article = notícia/matéria sobre o projeto. */
   links: { demo?: string; github?: string; article?: string };
@@ -117,6 +122,19 @@ export const projects: Project[] = [
     status: "event",
     group: "hardware",
     icon: "qr",
+    cover: {
+      kicker: { pt: "XVIII ENTEC · 2025", en: "XVIII ENTEC · 2025" },
+      headline: {
+        pt: "Uma simulação educativa de engenharia social",
+        en: "An educational social-engineering simulation",
+      },
+      flow: [
+        { pt: "QR Code", en: "QR code" },
+        { pt: "Formulário", en: "Form" },
+        { pt: "ESP32", en: "ESP32" },
+        { pt: "LED · buzzer", en: "LED · buzzer" },
+      ],
+    },
     tags: ["Next.js", "TypeScript", "Firebase", "ESP32", "Arduino IDE"],
     links: {
       demo: "https://bomba-logica-next.vercel.app/",

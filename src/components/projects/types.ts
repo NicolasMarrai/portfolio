@@ -10,6 +10,7 @@ export type ProjectCardData = {
   context: string;
   summary: string;
   pipeline?: string[];
+  cover?: { kicker: string; headline: string; flow?: string[] };
   tags: string[];
   status: ProjectStatus;
   links: Project["links"];

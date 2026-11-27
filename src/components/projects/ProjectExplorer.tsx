@@ -77,6 +77,71 @@ export function ProjectExplorer({ cards }: { cards: ProjectCardData[] }) {
   );
 }
 
+/**
+ * Capa desenhada para projetos sem imagem. Usa os mesmos elementos do site:
+ * linhas horizontais finas (como o fundo), cantos de mira (como a foto do hero),
+ * rótulo em mono e título em Space Grotesk. Tamanhos por container query,
+ * porque o card muda de largura entre uma e duas colunas.
+ */
+function ProjectCover({
+  title,
+  cover,
+  Icon,
+}: {
+  title: string;
+  cover: NonNullable<ProjectCardData["cover"]>;
+  Icon: typeof Globe;
+}) {
+  return (
+    <div
+      role="img"
+      aria-label={`${cover.kicker}: ${cover.headline}: ${title}`}
+      className="@container relative flex size-full flex-col justify-between overflow-hidden p-6 @md:p-8"
+      style={{
+        backgroundImage: "repeating-linear-gradient(to bottom, transparent 0 27px, var(--line) 27px 28px)",
+      }}
+    >
+      {/* Cantos de mira */}
+      <span aria-hidden className="absolute top-2.5 left-2.5 size-3 border-t border-l border-cyan" />
+      <span aria-hidden className="absolute top-2.5 right-2.5 size-3 border-t border-r border-cyan" />
+      <span aria-hidden className="absolute bottom-2.5 left-2.5 size-3 border-b border-l border-cyan" />
+      <span aria-hidden className="absolute right-2.5 bottom-2.5 size-3 border-r border-b border-cyan" />
+
+      <Icon
+        aria-hidden
+        strokeWidth={1}
+        className="absolute top-1/2 right-6 hidden size-20 @sm:block -translate-y-1/2 text-cyan/15 @md:right-10 @md:size-32"
+      />
+
+      <p className="relative font-mono text-[0.7rem] tracking-wide text-cyan @md:text-xs">{cover.kicker}</p>
+
+      <div className="relative max-w-[78%]">
+        <p className="font-heading text-base leading-snug font-medium text-fg @sm:text-lg @md:text-2xl">
+          {cover.headline}
+        </p>
+        <p className="mt-1 font-heading text-xl font-semibold text-cyan @sm:text-2xl @md:text-3xl">{title}</p>
+      </div>
+
+      {cover.flow?.length ? (
+        <ol className="relative hidden flex-wrap items-center gap-1.5 font-mono text-[0.68rem] text-fg-muted @sm:flex">
+          {cover.flow.map((step, i) => (
+            <li key={step} className="flex items-center gap-1.5">
+              {i > 0 ? (
+                <span aria-hidden className="text-cyan">
+                  →
+                </span>
+              ) : null}
+              <span className="rounded border border-line bg-surface px-1.5 py-0.5">{step}</span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <span />
+      )}
+    </div>
+  );
+}
+
 function ProjectCard({ card: c }: { card: ProjectCardData }) {
   const t = useTranslations("projects");
   const h = useTranslations("hardware");
@@ -88,6 +153,8 @@ function ProjectCard({ card: c }: { card: ProjectCardData }) {
         {c.image ? (
           // unoptimized: a URL tem ?v=<hash>, e o Next 16 só otimiza query string fixa (localPatterns.search)
           <Image src={c.image} alt={c.title} fill unoptimized className="object-cover" />
+        ) : c.cover ? (
+          <ProjectCover title={c.title} cover={c.cover} Icon={Icon} />
         ) : (
           // Placeholder até existir public/projects/<id>.png
           <div className="flex size-full flex-col items-center justify-center gap-3">

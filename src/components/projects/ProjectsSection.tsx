@@ -40,6 +40,11 @@ export async function ProjectsSection() {
     context: pick(p.context, locale),
     summary: pick(p.summary, locale),
     pipeline: p.pipeline?.map((step) => pick(step, locale)),
+    cover: p.cover && {
+      kicker: pick(p.cover.kicker, locale),
+      headline: pick(p.cover.headline, locale),
+      flow: p.cover.flow?.map((step) => pick(step, locale)),
+    },
     tags: p.tags,
     status: p.status,
     links: p.links,
