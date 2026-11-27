@@ -120,7 +120,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Firebase", "ESP32", "Arduino IDE"],
     links: {
       demo: "https://bomba-logica-next.vercel.app/",
-      article: "https://revistas.uniube.br/index.php/retii/article/view/1966?articlesBySimilarityPage=9",
+      article: "https://revistas.uniube.br/index.php/retii/article/view/1966",
     },
     details: {
       context: {
