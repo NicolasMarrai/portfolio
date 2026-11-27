@@ -146,8 +146,8 @@ export const projects: Project[] = [
         en: "Project shown at Uniube's XVIII ENTEC. A printed QR code leads to a web form. When someone submits their data, an ESP32 triggers an LED or buzzer and the person gets awareness messages. The form ended with a prize draw.",
       },
       myPart: {
-        pt: "O grupo oficial tinha 15 alunos de Engenharia da Computação e Elétrica, mas eu fiz praticamente o projeto inteiro em dupla com um amigo.",
-        en: "The official group had 15 Computer and Electrical Engineering students, but a friend and I built almost the whole project as a pair.",
+        pt: "Projeto desenvolvido em equipe com alunos de Engenharia da Computação e Elétrica. Trabalhamos juntos em todas as etapas: do formulário web e da integração com o Firebase à programação do ESP32 e à apresentação no evento.",
+        en: "Team project with Computer and Electrical Engineering students. We worked together on every stage: from the web form and Firebase integration to programming the ESP32 and presenting it at the event.",
       },
       stack: [
         "Next.js",
